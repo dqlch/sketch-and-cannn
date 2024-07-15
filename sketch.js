@@ -9,6 +9,7 @@ var backgroundImg;
 var tower;
 var canvas;
 var angle;
+var cannon, cannonBall;
 function preload(){
   backgroundImg = loadImage("./assets/background.gif");
 }
@@ -22,7 +23,7 @@ function setup() {
   angle = -PI / 4;
   tower = new Tower(150,350,160,310);
   cannon = new Cannon(180, 130, 70, 50, angle);
-
+  cannonBall = new CannonBall(cannon.x, cannon.y);
 
  // rectMode(CENTER);
   //ellipseMode(RADIUS);
@@ -36,7 +37,12 @@ function draw()
 
   tower.display();
   cannon.display();
-
+  cannonBall.display();
  
 }
 
+function keyReleased() {
+  if (keyCode === DOWN_ARROW) {
+    cannonBall.shoot()
+  }
+}
